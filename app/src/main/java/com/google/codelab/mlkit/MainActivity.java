@@ -24,6 +24,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -49,6 +50,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Comparator;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
         Spinner dropdown = findViewById(R.id.spinner);
-        String[] items = new String[]{"Image1", "Image2", "Image3", "Image4", "Image5", "Image6", "Image7"};
+        String[] items = new String[]{"Image1", "Image2", "Image3", "Image4", "Image5", "Image6", "Image7", "Image8", "Image9"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
                 .simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
@@ -146,8 +149,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TextView textView2 = findViewById(R.id.input);
         String res = new String();
         int count = 0;
+        String aa;
         for (int i = 0; i < blocks.size(); i++) {
-            String aa = blocks.get(i).getRecognizedLanguage();
+            aa = blocks.get(i).getRecognizedLanguage();
             List<Text.Line> lines = blocks.get(i).getLines();
             for (int j = 0; j < lines.size(); j++) {
                 List<Text.Element> elements = lines.get(j).getElements();
@@ -178,6 +182,47 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             TextView translationTextView = findViewById(R.id.translated);
             translationTextView.setVisibility(View.VISIBLE);
             translationTextView.setText(resss);
+            ImageView translateIcon = findViewById(R.id.imageView);
+            translateIcon.setVisibility(View.VISIBLE);
+            TextView detectedLanguage = findViewById(R.id.textView4);
+            detectedLanguage.setVisibility(View.VISIBLE);
+            TextView translatedLanguage = findViewById(R.id.textView5);
+            translatedLanguage.setVisibility(View.VISIBLE);
+            translatedLanguage.setText("ENGLISH");
+            translatedLanguage.setVisibility(View.VISIBLE);
+
+            Dictionary languages = new Hashtable();
+            languages.put("am", "Amharic");
+            languages.put("ar", "Arabic");
+            languages.put("eu", "Basque");
+            languages.put("bn", "Bengali");
+            languages.put("en-GB", "English (UK)");
+            languages.put("pt-BR", "Portuguese");
+            languages.put("bg", "Bulgarian");
+            languages.put("ca", "Catalan");
+            languages.put("chr", "Cherokee");
+            languages.put("hr", "Croatian");
+            languages.put("cs", "Czech");
+            languages.put("da", "Danish");
+            languages.put("nl", "Dutch");
+            languages.put("en", "English (US)");
+
+            languages.put("et", "Estonian");
+            languages.put("fil", "Filipino");
+            languages.put("fi", "Finnish");
+            languages.put("fr", "French");
+            languages.put("de", "German");
+            languages.put("el", "Greek");
+            languages.put("gu", "Gujarati");
+            languages.put("iw", "Hebrew");
+            languages.put("hi", "Hindi");
+            languages.put("ru", "Russian");
+            languages.put("es", "Spanish");
+            String w = (String) languages.get(blocks.get(0).getRecognizedLanguage());
+            detectedLanguage.setText(w.toUpperCase());
+
+
+
 
 
 
@@ -254,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 5:
                 // Whatever you want to happen when the thrid item gets selected
-                mSelectedImage = getBitmapFromAsset(this, "grace_hopper.jpg");
+                mSelectedImage = getBitmapFromAsset(this, "warningRussin.jpg");
                 break;
             case 2:
                 mSelectedImage = getBitmapFromAsset(this, "no_swimming_warning.jpg");
@@ -271,6 +316,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case 6:
                 mSelectedImage = getBitmapFromAsset(this, "german2.jpg");
                 break;
+            case 7:
+                mSelectedImage = getBitmapFromAsset(this, "frenchWarning.jpg");
+                break;
+            case 8:
+                mSelectedImage = getBitmapFromAsset(this, "moneyHiest.jpg");
+                break;
+
         }
         if (mSelectedImage != null) {
             // Get the dimensions of the View
