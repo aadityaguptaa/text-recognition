@@ -18,6 +18,13 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import com.google.gson.*;
+import com.squareup.okhttp.*;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.text.Layout;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +60,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+
+import static com.google.codelab.mlkit.Translate.prettify;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = "MainActivity";
@@ -168,6 +178,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             count = 9;
         }
         textView2.setTextSize(100/count);
+        try {
+            String xx = new Translate().execute().get();
+            Log.i("result2", xx);
+
+
+        } catch (Exception e) {
+            Log.e("e2", String.valueOf(e));
+        }
 
     }
 
