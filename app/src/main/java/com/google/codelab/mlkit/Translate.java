@@ -7,12 +7,12 @@ import java.util.*;
 import com.google.gson.*;
 import com.squareup.okhttp.*;
 
-public class Translate extends AsyncTask<Void, Void, String> {
+public class Translate extends AsyncTask<String , Void, String> {
 
 
     private static String subscriptionKey = "ba73698f4023433a96bcb38324f21f33";
     private static String endpoint = "https://api.cognitive.microsofttranslator.com/";
-    String url = endpoint + "/translate?api-version=3.0&to=de,it";
+    String url = endpoint + "/translate?api-version=3.0&to=en";
     public OkHttpClient client = new OkHttpClient();
 
 
@@ -24,11 +24,12 @@ public class Translate extends AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected String doInBackground(Void... voids) {
+    protected String doInBackground(String...string) {
         MediaType mediaType = MediaType.parse("application/json");
         Log.i("err" , "2");
+        String inp = " \"" + string[0] + "\"";
         RequestBody body = RequestBody.create(mediaType,
-                "[{\n\t\"Text\": \"Welcome to Microsoft Translator. Guess how many languages I speak!\"\n}]");
+                "[{\n\t\"Text\":"+inp +  "\n}]");
         Log.i("err" , "3");
         Request request = new Request.Builder()
                 .url(url).post(body)

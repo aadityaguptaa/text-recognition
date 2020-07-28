@@ -18,30 +18,19 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import com.google.gson.*;
-import com.squareup.okhttp.*;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.text.Layout;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,14 +43,15 @@ import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
-
-import static com.google.codelab.mlkit.Translate.prettify;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = "MainActivity";
@@ -117,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
         Spinner dropdown = findViewById(R.id.spinner);
-        String[] items = new String[]{"Image1", "Image2", "Image3", "Image4", "Image5", "Image6"};
+        String[] items = new String[]{"Image1", "Image2", "Image3", "Image4", "Image5", "Image6", "Image7"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
                 .simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
@@ -153,10 +143,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             return;
         }
         mGraphicOverlay.clear();
-        TextView textView2 = findViewById(R.id.textView2);
+        TextView textView2 = findViewById(R.id.input);
         String res = new String();
         int count = 0;
         for (int i = 0; i < blocks.size(); i++) {
+            String aa = blocks.get(i).getRecognizedLanguage();
             List<Text.Line> lines = blocks.get(i).getLines();
             for (int j = 0; j < lines.size(); j++) {
                 List<Text.Element> elements = lines.get(j).getElements();
@@ -173,14 +164,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 res+="\n";
             }
         }
-        textView2.setText(res);
-        if(count > 9){
-            count = 9;
-        }
-        textView2.setTextSize(100/count);
+
         try {
-            String xx = new Translate().execute().get();
+            String xx = new Translate().execute(res).get();
             Log.i("result2", xx);
+            JSONArray jsonArray = new JSONArray(xx);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            JSONArray translation = jsonObject.getJSONArray("translations");
+            JSONObject op = translation.getJSONObject(0);
+            String resss = op.getString("text");
+            Log.i("qwerty", resss);
+            textView2.setText(res);
+            TextView translationTextView = findViewById(R.id.translated);
+            translationTextView.setVisibility(View.VISIBLE);
+            translationTextView.setText(resss);
+
+
+
+
+
+
 
 
         } catch (Exception e) {
@@ -264,6 +267,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 1:
                 mSelectedImage = getBitmapFromAsset(this, "lifeguard.jpg");
+                break;
+            case 6:
+                mSelectedImage = getBitmapFromAsset(this, "german2.jpg");
                 break;
         }
         if (mSelectedImage != null) {

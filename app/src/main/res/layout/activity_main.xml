@@ -9,13 +9,17 @@
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="294dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/select_image_for_text_recognition"
+        android:cropToPadding="false"
         android:scaleType="fitStart"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/button_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:contentDescription="@string/select_image_for_text_recognition" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.codelab.mlkit.GraphicOverlay
         android:id="@+id/graphic_overlay"
@@ -24,12 +28,12 @@
         android:layout_alignParentStart="true"
         app:layout_constraintBottom_toBottomOf="@id/image_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="@id/image_view"
         app:layout_constraintRight_toRightOf="@id/image_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/image_view"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.453" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -52,7 +56,6 @@
         style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
         android:layout_width="0dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="44dp"
         android:text="@string/find_text_button"
         android:textColor="#1F242E"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,21 +65,59 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/translated"
         style="@style/Widget.AppCompat.TextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="TextView"
+        android:layout_height="151dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="2sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/open_sans_light"
+        android:text="fsrgrgegergregerg"
         android:textAlignment="center"
-        android:textColor="#941515"
-        android:textSize="25dp"
+        android:textColor="#110E0E"
+        android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/image_view" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_view"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/input"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="158dp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeMinTextSize="2sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/open_sans_light"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#110E0E"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_view"
+        app:layout_constraintVertical_bias="0.618" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="37dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="@+id/translated"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_view"
+        app:srcCompat="@drawable/tranicon2"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
