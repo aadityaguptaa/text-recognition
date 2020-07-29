@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "381523041636",
+    "firebase_url": "https://text-recognition-deeaf.firebaseio.com",
+    "project_id": "text-recognition-deeaf",
+    "storage_bucket": "text-recognition-deeaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381523041636:android:4bee6b8d37b3f3d9792e71",
+        "android_client_info": {
+          "package_name": "com.google.codelab.mlkit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381523041636-96novuhnr88ddvvtho1a60kincup3cll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMtj7bfVIZbY8SQhw7Qe3tPmPSYfVaPKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381523041636-96novuhnr88ddvvtho1a60kincup3cll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

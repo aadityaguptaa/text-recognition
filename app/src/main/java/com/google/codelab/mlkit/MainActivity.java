@@ -174,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Log.i("result2", xx);
             JSONArray jsonArray = new JSONArray(xx);
             JSONObject jsonObject = jsonArray.getJSONObject(0);
+            JSONObject detectedLanguage1 = jsonObject.getJSONObject("detectedLanguage");
+            String w = detectedLanguage1.getString("language");
             JSONArray translation = jsonObject.getJSONArray("translations");
             JSONObject op = translation.getJSONObject(0);
             String resss = op.getString("text");
@@ -218,7 +220,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             languages.put("hi", "Hindi");
             languages.put("ru", "Russian");
             languages.put("es", "Spanish");
-            String w = (String) languages.get(blocks.get(0).getRecognizedLanguage());
+            languages.put("it", "Italian");
+            w = (String) languages.get(w);
+            Log.i("lang", w);
             detectedLanguage.setText(w.toUpperCase());
 
 
@@ -295,33 +299,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mGraphicOverlay.clear();
         switch (position) {
             case 4:
-                mSelectedImage = getBitmapFromAsset(this, "Please_walk_on_the_grass.jpg");
+                mSelectedImage = getBitmapFromAsset(this, "spanishWarningcp.jpg");
                 break;
-            case 5:
+            case 8:
                 // Whatever you want to happen when the thrid item gets selected
                 mSelectedImage = getBitmapFromAsset(this, "warningRussin.jpg");
                 break;
             case 2:
-                mSelectedImage = getBitmapFromAsset(this, "no_swimming_warning.jpg");
+                mSelectedImage = getBitmapFromAsset(this, "professor.jpg");
                 break;
             case 0:
-                mSelectedImage = getBitmapFromAsset(this, "airlie_beach.jpg");
-                break;
-            case 3:
-                mSelectedImage = getBitmapFromAsset(this, "shark_sighted.jpg");
-                break;
-            case 1:
-                mSelectedImage = getBitmapFromAsset(this, "lifeguard.jpg");
-                break;
-            case 6:
-                mSelectedImage = getBitmapFromAsset(this, "german2.jpg");
+                mSelectedImage = getBitmapFromAsset(this, "span2.jpg");
                 break;
             case 7:
+                mSelectedImage = getBitmapFromAsset(this, "shark_sighted.jpg");
+                break;
+            case 6:
+                mSelectedImage = getBitmapFromAsset(this, "german1.jpg");
+                break;
+            case 1:
+                mSelectedImage = getBitmapFromAsset(this, "german2.jpg");
+                break;
+            case 3:
                 mSelectedImage = getBitmapFromAsset(this, "frenchWarning.jpg");
                 break;
-            case 8:
-                mSelectedImage = getBitmapFromAsset(this, "moneyHiest.jpg");
+            case 5:
+                mSelectedImage = getBitmapFromAsset(this, "italianBoard.jpg");
                 break;
+
 
         }
         if (mSelectedImage != null) {
