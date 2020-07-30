@@ -109,7 +109,7 @@
         app:layout_constraintVertical_bias="0.618" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView8"
         android:layout_width="37dp"
         android:layout_height="45dp"
         android:visibility="visible"
@@ -127,10 +127,10 @@
         android:textColor="#161414"
 
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/textView5"
@@ -139,10 +139,24 @@
         android:text="ENGLISH"
         android:textColor="#110F0F"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="49dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_view"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/cameraicon2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

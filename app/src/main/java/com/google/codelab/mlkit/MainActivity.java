@@ -14,16 +14,24 @@
 
 package com.google.codelab.mlkit;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.Pair;
@@ -109,14 +117,68 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+        //Request For Camera Permission
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{
+                    Manifest.permission.CAMERA
+            }, 100);
+        }
+
+        ImageView cameraClick = findViewById(R.id.imageView2);
+        cameraClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //open camera
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 100);
+            }
+        });
+
+
+
         Spinner dropdown = findViewById(R.id.spinner);
-        String[] items = new String[]{"Image1", "Image2", "Image3", "Image4", "Image5", "Image6", "Image7", "Image8", "Image9"};
+        String[] items = new String[]{"Image1", "Image2", "Image3", "Image4", "Image5", "Image6", "Image7", "Image8", "Image9", "CapturefromCamera"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
                 .simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
         dropdown.setOnItemSelectedListener(this);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            Bitmap captureImage = (Bitmap) data.getExtras().get("data");
+            mSelectedImage = captureImage;
+            ImageView imageView = findViewById(R.id.image_view);
+
+            imageView.setImageBitmap(mSelectedImage);
+
+            Pair<Integer, Integer> targetedSize = getTargetedWidthHeight();
+
+            int targetWidth = targetedSize.first;
+            int maxHeight = targetedSize.second;
+
+            float scaleFactor =
+                    Math.max(
+                            (float) mSelectedImage.getWidth() / (float) targetWidth,
+                            (float) mSelectedImage.getHeight() / (float) maxHeight);
+
+            Bitmap resizedBitmap =
+                    Bitmap.createScaledBitmap(
+                            mSelectedImage,
+                            (int) (mSelectedImage.getWidth() / scaleFactor),
+                            (int) (mSelectedImage.getHeight() / scaleFactor),
+                            true);
+
+            mImageView.setImageBitmap(resizedBitmap);
+            mSelectedImage = resizedBitmap;
+            runTextRecognition();
+
+        }
+    }
+
 
     private void runTextRecognition() {
         InputImage image = InputImage.fromBitmap(mSelectedImage, 0);
@@ -161,8 +223,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     mGraphicOverlay.add(textGraphic);
                     res += elements.get(k).getText();
                     res += " ";
-
-
                 }
                 count +=1;
                 res+="\n";
@@ -184,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             TextView translationTextView = findViewById(R.id.translated);
             translationTextView.setVisibility(View.VISIBLE);
             translationTextView.setText(resss);
-            ImageView translateIcon = findViewById(R.id.imageView);
+            ImageView translateIcon = findViewById(R.id.imageView8);
             translateIcon.setVisibility(View.VISIBLE);
             TextView detectedLanguage = findViewById(R.id.textView4);
             detectedLanguage.setVisibility(View.VISIBLE);
@@ -224,67 +284,35 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             w = (String) languages.get(w);
             Log.i("lang", w);
             detectedLanguage.setText(w.toUpperCase());
-
-
-
-
-
-
-
-
-
-
-
         } catch (Exception e) {
             Log.e("e2", String.valueOf(e));
         }
 
     }
 
-    private void runFaceContourDetection() {
-        // Replace with code from the codelab to run face contour detection.
-    }
 
-    private void processFaceContourDetectionResult(List<Face> faces) {
-        // Replace with code from the codelab to process the face contour detection result.
-    }
 
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    // Functions for loading images from app assets.
 
-    // Returns max image width, always for portrait mode. Caller needs to swap width / height for
-    // landscape mode.
     private Integer getImageMaxWidth() {
         if (mImageMaxWidth == null) {
-            // Calculate the max width in portrait mode. This is done lazily since we need to
-            // wait for
-            // a UI layout pass to get the right values. So delay it to first time image
-            // rendering time.
             mImageMaxWidth = mImageView.getWidth();
         }
-
         return mImageMaxWidth;
     }
 
-    // Returns max image height, always for portrait mode. Caller needs to swap width / height for
-    // landscape mode.
+
     private Integer getImageMaxHeight() {
         if (mImageMaxHeight == null) {
-            // Calculate the max width in portrait mode. This is done lazily since we need to
-            // wait for
-            // a UI layout pass to get the right values. So delay it to first time image
-            // rendering time.
             mImageMaxHeight =
                     mImageView.getHeight();
         }
-
         return mImageMaxHeight;
     }
 
-    // Gets the targeted width / height.
     private Pair<Integer, Integer> getTargetedWidthHeight() {
         int targetWidth;
         int targetHeight;
@@ -302,7 +330,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 mSelectedImage = getBitmapFromAsset(this, "spanishWarningcp.jpg");
                 break;
             case 8:
-                // Whatever you want to happen when the thrid item gets selected
                 mSelectedImage = getBitmapFromAsset(this, "warningRussin.jpg");
                 break;
             case 2:
@@ -330,13 +357,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         }
         if (mSelectedImage != null) {
-            // Get the dimensions of the View
             Pair<Integer, Integer> targetedSize = getTargetedWidthHeight();
 
             int targetWidth = targetedSize.first;
             int maxHeight = targetedSize.second;
 
-            // Determine how much to scale down the image
             float scaleFactor =
                     Math.max(
                             (float) mSelectedImage.getWidth() / (float) targetWidth,
