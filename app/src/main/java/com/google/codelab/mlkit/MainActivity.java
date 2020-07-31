@@ -104,6 +104,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView tr = findViewById(R.id.imageView8);
+        tr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, dashBoard.class);
+                startActivity(intent);
+            }
+        });
 
         mImageView = findViewById(R.id.image_view);
 
