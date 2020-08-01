@@ -127,13 +127,14 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/find_meaning_card_view"
             android:layout_width="160dp"
             android:layout_height="190dp"
-            app:cardBackgroundColor="@android:color/transparent"
 
             android:layout_margin="10dp"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@android:color/transparent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -153,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/open_sans_light"
-                    android:text="TEXT TO AUDIO"
+                    android:text="FIND MEANING"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:textStyle="bold" />

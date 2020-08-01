@@ -34,13 +34,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.squareup.okhttp:okhttp:2.5.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-    // Face features
     implementation 'com.google.mlkit:face-detection:16.0.0'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.9'
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
-
 
 
     // Text features
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:16.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'org.apache:apache:23'
 }
