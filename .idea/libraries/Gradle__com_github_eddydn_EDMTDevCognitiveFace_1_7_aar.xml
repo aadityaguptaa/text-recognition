@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.eddydn:EDMTDevCognitiveFace:1.7@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a8e8f871ca6d535a0214ebf01927226f/EDMTDevCognitiveFace-1.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a8e8f871ca6d535a0214ebf01927226f/EDMTDevCognitiveFace-1.7/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

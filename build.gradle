@@ -6,6 +6,8 @@ buildscript {
         maven { url rootProject.projectDir.getAbsolutePath() + '/libraries' }
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
+
 
     }
     dependencies {
@@ -23,6 +25,8 @@ buildscript {
 allprojects {
     repositories {
         maven { url rootProject.projectDir.getAbsolutePath() + '/libraries' }
+        maven { url 'https://jitpack.io' }
+
         google()
         jcenter()
         mavenCentral()
@@ -34,3 +38,4 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
