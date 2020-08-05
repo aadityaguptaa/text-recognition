@@ -34,7 +34,7 @@ public class dashBoard extends AppCompatActivity {
         find_meaning_card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(dashBoard.this, find_meaning.class);
+                Intent intent = new Intent(dashBoard.this, findMeaning.class);
                 startActivity(intent);
             }
         });

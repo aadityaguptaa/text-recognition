@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.rest:client-runtime:1.4.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.rest/client-runtime/1.4.0/f5c709683ae0661b6d1f3e12291f182f9bc4d813/client-runtime-1.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.rest/client-runtime/1.4.0/abc1bc9e5fa4fc9b6bbd37a98bf81b3aa448e649/client-runtime-1.4.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.rest/client-runtime/1.4.0/3cc7379ef452af5182f72c50782bf6a5c3a47294/client-runtime-1.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

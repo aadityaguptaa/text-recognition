@@ -5,11 +5,16 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.google.codelab.mlkit"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions{
+            annotationProcessorOptions{
+                includeCompileClasspath = true
+            }
+        }
     }
     buildTypes {
         release {
@@ -34,6 +39,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.squareup.okhttp:okhttp:2.5.0'
+    implementation "com.google.guava:guava:29.0-jre"
+    implementation "com.microsoft.azure.cognitiveservices:azure-cognitiveservices-computervision:1.0.2-beta"
+
+
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.google.mlkit:face-detection:16.0.0'
     implementation 'org.apache.httpcomponents:httpcore:4.4.9'

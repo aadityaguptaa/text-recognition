@@ -18,10 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".find_meaning"
-            android:label="@string/title_activity_find_meaning"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".findMeaning"></activity>
         <activity
             android:name=".dashBoard"
             android:label="@string/title_activity_dash_board"
